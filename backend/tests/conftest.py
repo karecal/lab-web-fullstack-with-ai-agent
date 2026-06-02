@@ -1,16 +1,10 @@
 import os
-import sys
+import pytest
 
-# Añade backend/ al path para que 'from main import app' funcione
-# tanto cuando pytest se lanza desde la raíz como desde backend/
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-
-# Env vars antes de cualquier import de la app (los módulos las leen al importarse)
+# Env vars antes de cualquier import de la app
 os.environ.setdefault("OPENAI_API_KEY", "fake-key-for-tests")
 os.environ.setdefault("DEMO_TOKEN", "demo-token-12345")
 os.environ.setdefault("ALLOWED_ORIGINS", "http://localhost:5173")
-
-import pytest
 
 
 @pytest.fixture(autouse=True)
